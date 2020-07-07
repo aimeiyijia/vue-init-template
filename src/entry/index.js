@@ -2,7 +2,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 
-import '../style/common.scss';
+// import '../style/common.scss';
+
+
 
 import App from '../pages/App.vue';
 import Index from '../pages/Index.vue';

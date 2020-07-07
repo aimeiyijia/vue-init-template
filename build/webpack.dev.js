@@ -17,7 +17,7 @@ module.exports = merge(common, {
         },
         port:8889,
         open: 'http://localhost:8889/',
-        host:'0.0.0.0'
+        // host:'0.0.0.0'
     },
     output: {
         filename: 'js/[name].[hash:5].js',
