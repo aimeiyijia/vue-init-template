@@ -13,31 +13,32 @@ module.exports = merge(common, {
 		filename: "js/[name].[hash:5].js",
 		path: path.resolve(__dirname, "../dist"),
 	},
+	// stats: { children: false },
 	optimization: {
-		splitChunks: {
-			chunks: "all",
-			cacheGroups: {
-				vendor: {
-					name: "vendor",
-					test: /[\\/]node_module[\\/]/,
-					priority: -10,
-					chunks: "initial",
-				},
-			},
-		},
-		minimize: true,
-		minimizer: [
-			new TerserPlugin({
-				terserOptions: {
-					warnings: false,
-					console: false,
-					compress: {},
-				},
-				cache: true,
-				parallel: true,
-				sourceMap: true,
-			}),
-		],
+		// splitChunks: {
+		// 	chunks: "all",
+		// 	cacheGroups: {
+		// 		vendor: {
+		// 			name: "vendor",
+		// 			test: /[\\/]node_module[\\/]/,
+		// 			priority: -10,
+		// 			chunks: "initial",
+		// 		},
+		// 	},
+		// },
+		// minimize: true,
+		// minimizer: [
+		// 	new TerserPlugin({
+		// 		terserOptions: {
+		// 			warnings: false,
+		// 			console: false,
+		// 			compress: {},
+		// 		},
+		// 		cache: true,
+		// 		parallel: true,
+		// 		sourceMap: true,
+		// 	}),
+		// ],
 	},
 	module: {
 		rules: [
@@ -49,15 +50,15 @@ module.exports = merge(common, {
 			{
 				test: /\.vue$/,
 				loader: "vue-loader",
-				options: {
-					// loaders: {
-					//     scss: 'vue-style-loader!css-loader!sass-loader',
-					//     sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
-					//     // transformToRequire: {
-					//     //     img: 'src'
-					//     // }
-					// }
-				},
+				// options: {
+				// 	loaders: {
+				// 	    scss: 'vue-style-loader!css-loader!sass-loader',
+				// 	    sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
+				// 	    // transformToRequire: {
+				// 	    //     img: 'src'
+				// 	    // }
+				// 	}
+				// },
 			},
 			{
 				test: /\.(sa|sc|c)ss$/,
@@ -65,7 +66,7 @@ module.exports = merge(common, {
 					{
 						loader: MiniCssExtractPlugin.loader,
 						options: {
-							publicPath: "../",
+							publicPath: "./",
 						},
 					},
 					"css-loader",
@@ -74,35 +75,13 @@ module.exports = merge(common, {
 				],
 			},
 			{
-				test: /\.(png|jpg|svg|gif)$/,
+				test: /\.(png|jpg|svg|gif|jpe?g)$/,
 				use: [
 					{
 						loader: "url-loader",
 						options: {
 							limit: 10240,
 							name: "imgs/[name].[contenthash:5].[ext]",
-						},
-					},
-					{
-						loader: "image-webpack-loader",
-						options: {
-							mozjpeg: {
-								progressive: true,
-								quality: 65,
-							},
-							optipng: {
-								enabled: false,
-							},
-							pngquant: {
-								quality: "65-90",
-								speed: 4,
-							},
-							gifsicle: {
-								interlaced: false,
-							},
-							webp: {
-								quality: 75,
-							},
 						},
 					},
 				],
@@ -115,10 +94,10 @@ module.exports = merge(common, {
 			filename: "css/[name].[hash:5].css",
 		}),
 		new OptimizeCSSAssetsPlugin(),
-		new BundleAnalyzerPlugin({
-			analyzerMode: "static",
-			openAnalyzer: true,
-			logLevel: "info",
-		}),
+		// new BundleAnalyzerPlugin({
+		// 	analyzerMode: "static",
+		// 	openAnalyzer: true,
+		// 	logLevel: "info",
+		// }),
 	],
 });
