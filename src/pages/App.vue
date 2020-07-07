@@ -3,6 +3,7 @@
     <myNav></myNav>
     <!-- 给VueRoutter留坑！！ -->
     <router-view></router-view>
+    <div>ceshishishsih</div>
   </div>
 </template>
 

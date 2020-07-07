@@ -45,6 +45,8 @@ module.exports = {
 			title: "Development",
 			template: path.resolve(__dirname, "../public/index.html"),
 			inject: "body",
+			filename: "index.html",
+			hash: true,
 			minify: {
 				removeComments: true,
 				collapseWhitespace: true,

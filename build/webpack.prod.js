@@ -15,30 +15,30 @@ module.exports = merge(common, {
 	},
 	// stats: { children: false },
 	optimization: {
-		// splitChunks: {
-		// 	chunks: "all",
-		// 	cacheGroups: {
-		// 		vendor: {
-		// 			name: "vendor",
-		// 			test: /[\\/]node_module[\\/]/,
-		// 			priority: -10,
-		// 			chunks: "initial",
-		// 		},
-		// 	},
-		// },
-		// minimize: true,
-		// minimizer: [
-		// 	new TerserPlugin({
-		// 		terserOptions: {
-		// 			warnings: false,
-		// 			console: false,
-		// 			compress: {},
-		// 		},
-		// 		cache: true,
-		// 		parallel: true,
-		// 		sourceMap: true,
-		// 	}),
-		// ],
+		splitChunks: {
+			chunks: "all",
+			cacheGroups: {
+				vendor: {
+					name: "vendor",
+					test: /[\\/]node_module[\\/]/,
+					priority: -10,
+					chunks: "initial",
+				},
+			},
+		},
+		minimize: true,
+		minimizer: [
+			new TerserPlugin({
+				terserOptions: {
+					warnings: false,
+					console: false,
+					compress: {},
+				},
+				cache: true,
+				parallel: true,
+				sourceMap: true,
+			}),
+		],
 	},
 	module: {
 		rules: [
@@ -47,19 +47,19 @@ module.exports = merge(common, {
 				loader: "babel-loader",
 				exclude: /node_modules/,
 			},
-			{
-				test: /\.vue$/,
-				loader: "vue-loader",
-				// options: {
-				// 	loaders: {
-				// 	    scss: 'vue-style-loader!css-loader!sass-loader',
-				// 	    sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
-				// 	    // transformToRequire: {
-				// 	    //     img: 'src'
-				// 	    // }
-				// 	}
-				// },
-			},
+			// {
+			// 	test: /\.vue$/,
+			// 	loader: "vue-loader",
+			// 	// options: {
+			// 	// 	loaders: {
+			// 	// 	    scss: 'vue-style-loader!css-loader!sass-loader',
+			// 	// 	    sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
+			// 	// 	    // transformToRequire: {
+			// 	// 	    //     img: 'src'
+			// 	// 	    // }
+			// 	// 	}
+			// 	// },
+			// },
 			{
 				test: /\.(sa|sc|c)ss$/,
 				use: [
