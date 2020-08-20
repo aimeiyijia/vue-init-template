@@ -8,12 +8,18 @@ const ssh = new NodeSSH();
 const rootPath = path.join(__dirname, "..");
 
 module.exports = {
-	connectServe: async () => {
+	connectServe: async (serveIP, username, password) => {
 		try {
+			// await ssh.connect({
+			// 	host: "11.0.0.34",
+			// 	username: "root",
+			// 	password: "@wsx7ujm",
+			// 	port: 22, //SSH连接默认在22端口
+			// });
 			await ssh.connect({
-				host: "11.0.0.34",
-				username: "root",
-				password: "@wsx7ujm",
+				host: serveIP,
+				username: username,
+				password: password,
 				port: 22, //SSH连接默认在22端口
 			});
 			return { ssh, type: true, log: chalk.green("服务器连接成功") };

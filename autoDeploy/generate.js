@@ -3,10 +3,11 @@ var shell = require("shelljs"),
 	chalk = require("chalk");
 const { exec } = shell;
 module.exports = {
-	execBuild: () => {
-		console.log(__dirname);
+	execBuild: (projectName, projectDir) => {
+		console.log(projectName, "1");
+		console.log(projectDir, "1");
 		return new Promise((resolve, reject) => {
-			shell.cd(__dirname);
+			shell.cd(projectDir + projectName);
 			const build = exec("npm run build");
 			if (build.code === 0) {
 				resolve({
@@ -16,7 +17,7 @@ module.exports = {
 			} else {
 				reject({
 					type: false,
-					log: chalk.green("build失败，请重试！"),
+					log: chalk.red("build失败，请重试！"),
 				});
 			}
 		});
