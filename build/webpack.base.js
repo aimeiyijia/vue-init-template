@@ -4,7 +4,7 @@ const path = require("path"),
 	WebpackBar = require("webpackbar");
 
 module.exports = {
-	entry: "./src/entry/index.js",
+	entry: "./src/index.js",
 	module: {
 		rules: [
 			{

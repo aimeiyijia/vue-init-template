@@ -1,11 +1,17 @@
+// 合并webpack配置
 const merge = require("webpack-merge"),
 	common = require("./webpack.base"),
 	path = require("path"),
+
+	// 清理打包文件
 	{ CleanWebpackPlugin } = require("clean-webpack-plugin"),
+
+	// 将CSS提取为独立的文件的插件，对每个包含css的js文件都会创建一个CSS文件，支持按需加载css和sourceMap
 	MiniCssExtractPlugin = require("mini-css-extract-plugin"),
 	OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"),
 	TerserPlugin = require("terser-webpack-plugin"),
-	BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+	BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin,
+	ManifestPlugin = require("webpack-manifest-plugin");
 
 module.exports = merge(common, {
 	mode: "production",
@@ -47,19 +53,6 @@ module.exports = merge(common, {
 				loader: "babel-loader",
 				exclude: /node_modules/,
 			},
-			// {
-			// 	test: /\.vue$/,
-			// 	loader: "vue-loader",
-			// 	// options: {
-			// 	// 	loaders: {
-			// 	// 	    scss: 'vue-style-loader!css-loader!sass-loader',
-			// 	// 	    sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
-			// 	// 	    // transformToRequire: {
-			// 	// 	    //     img: 'src'
-			// 	// 	    // }
-			// 	// 	}
-			// 	// },
-			// },
 			{
 				test: /\.(sa|sc|c)ss$/,
 				use: [
@@ -89,6 +82,7 @@ module.exports = merge(common, {
 		],
 	},
 	plugins: [
+		new ManifestPlugin(),
 		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin({
 			filename: "css/[name].[hash:5].css",
