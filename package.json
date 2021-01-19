@@ -40,7 +40,7 @@
     "webpackbar": "^4.0.0"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "vue": "^2.6.12",
     "vue-router": "^3.4.9"
   }
